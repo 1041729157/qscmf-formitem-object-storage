@@ -120,7 +120,7 @@ class Common
     }
 
     public static function getFileByHash(string $hash_id, IVendor $os_cls, string $title, string $resize = ''):?array{
-        $file_data = D("FilePic")->where(['hash_id' => $hash_id])->find();
+        $file_data = D("FilePic")->where(['hash_id' => $hash_id, 'vendor_type' => $os_cls->getVendorType()])->find();
         if ($file_data){
             $file_data = self::handleCbRes($file_data, $os_cls, $resize);
         }
