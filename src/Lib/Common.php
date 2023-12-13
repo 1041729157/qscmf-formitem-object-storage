@@ -122,23 +122,9 @@ class Common
     }
 
     public static function getFileByHash(string $hash_id, IVendor $os_cls, string $title, string $resize = ''):?array{
-        $file_data = null;
-        $security = $os_cls->getUploadConfig()->getSecurity();
-        $temp_data = [
-            'title' => $title,
-            'cate' => $os_cls->getUploadConfig()->getType(),
-            'hash_id' => $hash_id,
-            'security' => $security ?: 0,
-            'owner' => $security ? session(C('USER_AUTH_KEY')) : 0,
-            'vendor_type' => $os_cls->getVendorType(),
-        ];
-        $manager = new Manager(new File($temp_data));
-        if($manager->isExists()){
-            $file_id = $manager->mirror();
-            if($file_id !== false){
-                $file_data = D("FilePic")->getOne($file_id);
-                $file_data = self::handleCbRes($file_data, $os_cls, $resize);
-            }
+        $file_data = D("FilePic")->where(['hash_id' => $hash_id])->find();
+        if ($file_data){
+            $file_data = self::handleCbRes($file_data, $os_cls, $resize);
         }
 
         return $file_data;
