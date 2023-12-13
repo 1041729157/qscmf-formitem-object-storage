@@ -4,8 +4,6 @@ namespace FormItem\ObjectStorage\Lib;
 
 use FormItem\ObjectStorage\Lib\Vendor\Context;
 use FormItem\ObjectStorage\Lib\Vendor\IVendor;
-use Qscmf\Lib\FileUploadManager\Manager;
-use Qscmf\Lib\FileUploadManager\File;
 
 class Common
 {
