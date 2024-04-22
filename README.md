@@ -571,6 +571,10 @@ $res = $os_vendor->genClient('image')->uploadFile($file_path, $object, $options)
       <script type="text/javascript" src="{:asset('object-storage/cropper/cropper.js')}"></script>
       <script type="text/javascript" src="{:asset('object-storage/plupload-2.3.9/js/moxie.min.js')}"></script>
       <script type="text/javascript" src="{:asset('object-storage/osuploader/jquery.osuploader.js')}"></script>
+          
+      // 需要按顺序引入此资源
+      <script type="text/javascript" src="{:asset('object-storage/file-md5-wasm/js/md5.min.js')}"></script>
+      <script type="text/javascript" src="{:asset('object-storage/file-md5-wasm/js/calc_file_hash.js')}"></script>
   
       <define name="pictures_os_intercept" value="1" />
   </notdefined>
