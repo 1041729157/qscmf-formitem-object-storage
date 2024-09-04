@@ -30,13 +30,13 @@
                     $pictures_json='';
                 }
             </php>
-            <input type="hidden" name="{$form.name}" value="{$form.value}" data-srcjson="{$pictures_json}">
+            <input id="{$gid}" type="hidden" name="{$form.name}" value="{$form.value}" data-srcjson="{$pictures_json}">
             <notempty name="form.tip">
                 <span class="check-tips small">{$form.tip}</span>
             </notempty>
             <script>
                 $(function () {
-                    $('input[name="{$form.name}"]').osuploader({
+                    $("#{$gid}").osuploader({
                         url:'{$data_url}',
                         vendor_type:'{$vendor_type}',
                         cacl_file_hash:'{$cacl_file_hash}',

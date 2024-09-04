@@ -3,6 +3,7 @@ namespace FormItem\ObjectStorage\FormType\PictureOsIntercept;
 
 use FormItem\ObjectStorage\Lib\Common;
 use FormItem\ObjectStorage\Lib\TUploadConfig;
+use Illuminate\Support\Str;
 use Qscmf\Builder\FormType\FormType;
 use Think\View;
 use FormItem\ObjectStorage\Lib\FormTypeItemProp;
@@ -18,6 +19,7 @@ class PictureOsIntercept implements FormType {
 
 
         $view->assign('form', $form_type);
+        $view->assign('gid', Str::uuid()->getHex());
 
         self::commonAssign($upload_type_cls, $view, $form_type);
 
