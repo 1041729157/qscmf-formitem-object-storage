@@ -21,7 +21,7 @@ class FilesOs extends FileFormType implements FormType{
             $files = [];
             foreach(explode(',', $form_type['value']) as $file_id){
                 $data = [];
-                $data['url'] = U('/extends/ObjectStorage/download', ['file_id'=>$form_type['value']], '', true);
+                $data['url'] = U('/extends/ObjectStorage/download', ['file_id'=>$file_id], '', true);
 
                 $data['id'] = $file_id;
                 if($this->needPreview(showFileUrl($file_id))){
