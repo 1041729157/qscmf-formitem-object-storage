@@ -7,7 +7,6 @@ namespace FormItem\ObjectStorage\Lib\Vendor;
 use FormItem\ObjectStorage\Lib\Common;
 use FormItem\ObjectStorage\Lib\UploadConfig;
 use GuzzleHttp\Psr7\Utils;
-use Tos\Model\PutObjectFromFileInput;
 
 class TengxunCos implements IVendor
 {
@@ -316,6 +315,7 @@ class TengxunCos implements IVendor
 
         $upload_meta = $this->getUploadConfig()->getMeta();
         $upload_meta = Common::injectMeta($upload_meta, $get_data);
+        $upload_meta['Content-Type'] = $get_data['file_type'];
 
         $authorization=$this->getAuthorization($pathname,'POST');
 
