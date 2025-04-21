@@ -372,7 +372,8 @@ composer require quansitech/qscmf-formitem-object-storage
          "callback": "xxx",
          "callback_var": "xxx",
          "dir": "Uploads/file/20231010/652529fb6bd3e",
-         "vendor_type": "aliyun_oss"
+         "vendor_type": "aliyun_oss",
+         "upload_config": "xxx"
        }
        ```
 
@@ -386,7 +387,8 @@ composer require quansitech/qscmf-formitem-object-storage
            "key": "Uploads/image/20231010/652527bb43ebd.png",
            "success_action_redirect": "url"
          },
-         "vendor_type": "tengxun_cos"
+         "vendor_type": "tengxun_cos",
+         "upload_config": "xxx"
        }
        ```
 
@@ -407,7 +409,8 @@ composer require quansitech/qscmf-formitem-object-storage
                "policy": "xxx",
                "x-tos-signature": "xxx"
            },
-           "vendor_type": "volcengine_tos"
+           "vendor_type": "volcengine_tos",
+           "upload_config": "xxx"
        }
        ```
 
