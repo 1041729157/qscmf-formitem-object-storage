@@ -143,6 +143,9 @@ class ObjectStorageController extends \Think\Controller{
 
         $response = $os_cls->policyGet($type);
         $response['vendor_type'] = $vendor_type;
+        $response['upload_config'] = [
+            'max_size' => Common::getMaxSize($type)
+        ];
 
         $this->ajaxReturn($response);
     }
