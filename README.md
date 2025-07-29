@@ -654,7 +654,7 @@ $res = $os_vendor->genClient('image')->uploadFile($file_path, $object, $options)
       <link rel="stylesheet" href="{:asset('object-storage/cropper/cropper.min.css')}">
   
       <script type="text/javascript" src="{:asset('object-storage/cropper/cropper.js')}"></script>
-      <script type="text/javascript" src="{:asset('object-storage/plupload-2.3.9/js/moxie.min.js')}"></script>
+      <script type="text/javascript" src="{:asset('object-storage/plupload-2.3.9/js/plupload.full.min.js')}"></script>
       <script type="text/javascript" src="{:asset('object-storage/osuploader/jquery.osuploader.js')}"></script>
           
       // 需要按顺序引入此资源
