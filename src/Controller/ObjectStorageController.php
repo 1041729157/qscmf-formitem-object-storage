@@ -151,7 +151,7 @@ class ObjectStorageController extends \Think\Controller{
     }
 
     public function download(int $file_id){
-        $ent = D("FilePic")->where(['id' => $file_id])->find();
+        $ent = D(Helper::getModelNameFormEnv())->where(['id' => $file_id])->find();
         $url = showFileUrl($file_id);
         header("Content-type: application/force-download");
         header('Content-Disposition: inline; filename="' . $ent['title'] . '"');
