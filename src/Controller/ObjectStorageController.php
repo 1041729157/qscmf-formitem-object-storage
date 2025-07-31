@@ -3,7 +3,7 @@
 namespace FormItem\ObjectStorage\Controller;
 
 use FormItem\ObjectStorage\Lib\Common;
-use FormItem\ObjectStorage\Lib\File;
+use FormItem\ObjectStorage\Lib\Helper;
 use FormItem\ObjectStorage\Lib\Vendor\Context;
 
 class ObjectStorageController extends \Think\Controller{
@@ -78,9 +78,9 @@ class ObjectStorageController extends \Think\Controller{
             $this->ajaxReturn($params['file_data']);
         }
 
-        $r = D('FilePic')->createAdd($file_data);
+        $r = D(Helper::getModelNameFormEnv())->createAdd($file_data);
         if($r === false){
-            E(D('FilePic')->getError());
+            E(D(Helper::getModelNameFormEnv())->getError());
         }
         else{
             if ($resize && !isset($body_arr['resize'])){
@@ -151,7 +151,7 @@ class ObjectStorageController extends \Think\Controller{
     }
 
     public function download(int $file_id){
-        $ent = D("FilePic")->where(['id' => $file_id])->find();
+        $ent = D(Helper::getModelNameFormEnv())->where(['id' => $file_id])->find();
         $url = showFileUrl($file_id);
         header("Content-type: application/force-download");
         header('Content-Disposition: inline; filename="' . $ent['title'] . '"');

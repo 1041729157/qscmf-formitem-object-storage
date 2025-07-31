@@ -1,11 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddVendorTypeToFilePic extends Migration
 {
+    protected $file_pic_table;
+
+    public function __construct()
+    {
+        $this->file_pic_table = env('OBJECT_STORAGE_FILE_TABLE_NAME', 'qs_file_pic');
+    }
 
     public function beforeCmmUp()
     {
@@ -24,9 +30,9 @@ class AddVendorTypeToFilePic extends Migration
      */
     public function up()
     {
-        Schema::table('qs_file_pic', function (Blueprint $table) {
+        Schema::table($this->file_pic_table, function (Blueprint $table) {
             //
-            $columns = DB::select("show columns from qs_file_pic WHERE FIELD in ('vendor_type');");
+            $columns = DB::select("show columns from " . $this->file_pic_table . " WHERE FIELD in ('vendor_type');");
 
             collect($columns)->each(function ($column) use($table) {
                 $comment = "提供图片存储服务的媒介，如：aliyun_oss 阿里云；tengxun_cos 腾讯云； volcengine_tos 火山引擎, 空的话就是服务器存储";

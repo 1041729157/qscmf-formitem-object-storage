@@ -785,3 +785,7 @@ $res = $os_vendor->genClient('image')->uploadFile($file_path, $object, $options)
         multipart_params:params.osParams.multipart_params
     }
   ```
+
+## 迁移说明
+
+若文件表不为 `qs_file_pic`，则使用 `.env` 文件配置 `OBJECT_STORAGE_FILE_TABLE_NAME` 来指定文件表名。

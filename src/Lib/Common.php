@@ -4,8 +4,8 @@ namespace FormItem\ObjectStorage\Lib;
 
 use FormItem\ObjectStorage\Lib\Vendor\Context;
 use FormItem\ObjectStorage\Lib\Vendor\IVendor;
-use Qscmf\Lib\FileUploadManager\Manager;
 use Qscmf\Lib\FileUploadManager\File;
+use Qscmf\Lib\FileUploadManager\Manager;
 
 class Common
 {
@@ -208,7 +208,7 @@ class Common
         if($manager->isExists()){
             $file_id = $manager->mirror();
             if($file_id !== false){
-                $file_data = D("FilePic")->getOne($file_id);
+                $file_data = D(Helper::getModelNameFormEnv())->getOne($file_id);
                 $file_data = self::handleCbRes($file_data, $os_cls, $resize);
             }
         }

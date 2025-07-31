@@ -1,12 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class AddFilePicMimeTypeAndHashId extends Migration
 {
+    protected $file_pic_table;
+
+    public function __construct()
+    {
+        $this->file_pic_table = env('OBJECT_STORAGE_FILE_TABLE_NAME', 'qs_file_pic');
+    }
 
     public function beforeCmmUp()
     {
@@ -25,9 +31,10 @@ class AddFilePicMimeTypeAndHashId extends Migration
      */
     public function up()
     {
-        Schema::table('qs_file_pic', function (Blueprint $table) {
+
+        Schema::table($this->file_pic_table, function (Blueprint $table) {
             //
-            $columns = DB::select("show columns from qs_file_pic WHERE FIELD in ('mime_type','hash_id');");
+            $columns = DB::select("show columns from " . $this->file_pic_table . " WHERE FIELD in ('mime_type','hash_id');");
 
             $exists_mime_type = false;
             $exists_hash_id = false;
@@ -68,7 +75,7 @@ class AddFilePicMimeTypeAndHashId extends Migration
      */
     public function down()
     {
-        Schema::table('qs_file_pic', function (Blueprint $table) {
+        Schema::table($this->file_pic_table, function (Blueprint $table) {
             //
             $table->string('mime_type', 200)->default('')->change();
         });
