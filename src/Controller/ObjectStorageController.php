@@ -55,6 +55,7 @@ class ObjectStorageController extends \Think\Controller{
             $file_data['hash_id'] = $hash_id;
         }
         $file_data['cate'] = $type;
+        $file_data['original'] = $file_data['title'];
 
         C('TOKEN_ON',false);
 
