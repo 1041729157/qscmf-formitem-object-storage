@@ -16,7 +16,7 @@
                     <span>{:showFileTitle($file['id'])}
                             <a href="{$file.url}" target="_blank">下载</a>
                             <notempty name="file['preview_url']">
-                                <a href="{$file.preview_url}" target="_blank" style="margin-left: 5px;">预览</a>
+                                <a class="preview-file" data-preview-url="{$file.preview_url}" style="margin-left: 5px; cursor: pointer">预览</a>
                             </notempty>
                         </span>
                     <i class="fa fa-times-circle remove-file"></i>
@@ -32,6 +32,38 @@
     <script type="text/javascript">
         (function () {
             {$js_fn}
+
+            $('body').on('click','.preview-file', function () {
+                let preview_url = $(this).attr('data-preview-url');
+                clickPreviewFile(preview_url);
+            })
+
+            function clickPreviewFile(preview_url){
+                console.log(preview_url);
+                if (isPdfByUrl(preview_url)) {
+                    downloadAndPreview(preview_url);
+                } else {
+                    window.open(preview_url);
+                }
+            }
+
+            async function downloadAndPreview(url) {
+                try {
+                    // 下载文件
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    // 创建对象 URL
+                    const fileUrl = URL.createObjectURL(blob);
+                    // 在新窗口中打开预览
+                    window.open(fileUrl);
+                } catch (error) {
+                    console.error('文件预览失败:', error);
+                }
+            }
+
+            function isPdfByUrl(url) {
+                return url.toLowerCase().endsWith('.pdf');
+            }
 
             var fileExts_{$gid} = "{$file_ext}";
             let policyGetUrl = $('#upload_{$gid}').data('url') || "{$data_url}";
@@ -152,7 +184,7 @@
 
                     var preview_url = previewUrl(response.file_url);
                     if(preview_url){
-                        new_file += '<a href="' + preview_url + '" target="_blank" style="margin-left: 5px;">预览</a>';
+                        new_file += '<a class="preview-file" data-preview-url="' + preview_url + '" style="margin-left: 5px; cursor: pointer">预览</a>';
                     }
 
                     new_file += '<i class="fa fa-times-circle remove-file"></i></li>';
