@@ -43,12 +43,7 @@
             })
 
             function clickPreviewFile(preview_url){
-                console.log(preview_url);
-                if (isPdfByUrl(preview_url)) {
-                    downloadAndPreview(preview_url);
-                } else {
-                    window.open(preview_url);
-                }
+                downloadAndPreview(preview_url);
             }
 
             async function downloadAndPreview(url) {
@@ -63,10 +58,6 @@
                 } catch (error) {
                     console.error('文件预览失败:', error);
                 }
-            }
-
-            function isPdfByUrl(url) {
-                return url.toLowerCase().endsWith('.pdf');
             }
 
             var fileExts_{$gid} = "{$file_ext}";
